@@ -460,27 +460,150 @@ body {
     }
 }
 
-/* Responsive */
+/* Responsive - Mobil */
 @media (max-width: 768px) {
+    /* Açılış ekranı */
+    .splash-title {
+        font-size: 2.5em;
+        padding: 0 20px;
+    }
+    
+    .splash-subtitle {
+        font-size: 1.2em;
+    }
+    
+    /* Ana başlık */
     .title {
-        font-size: 2em;
+        font-size: 1.8em;
+        margin-bottom: 30px;
+        padding: 0 15px;
     }
     
+    /* Fotoğraf carousel */
     .photo-carousel {
-        max-width: 90%;
-        height: 280px;
+        max-width: 95%;
+        height: 250px;
+        margin-bottom: 40px;
     }
     
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    
+    /* Mumlar - mobilde daha küçük ve uygun boyut */
     .candles {
-        gap: 15px;
+        gap: 20px;
+        transform: scale(1.2);
+        padding: 40px 0;
+        margin: 30px 0;
     }
     
+    .blow-text {
+        font-size: 1.5em;
+        bottom: -50px;
+    }
+    
+    .flame {
+        width: 20px;
+        height: 32px;
+    }
+    
+    .wax {
+        width: 28px;
+        height: 75px;
+    }
+    
+    /* Dilek kutusu */
     .wish-box {
-        padding: 25px;
+        padding: 20px;
+        margin: 0 10px;
     }
     
     .wish-box h2 {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+    
+    #wishText {
+        font-size: 14px;
+        padding: 12px;
+        min-height: 100px;
+    }
+    
+    .wish-btn {
+        font-size: 0.95em;
+        padding: 12px 25px;
+    }
+    
+    /* Müzik butonu */
+    .music-btn {
+        top: 10px;
+        right: 10px;
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+    
+    /* Özel mesaj */
+    .message-content {
+        padding: 40px 25px;
+        margin: 0 20px;
+        max-width: 90%;
+    }
+    
+    .message-content h1 {
+        font-size: 2em;
+    }
+    
+    .message-text {
+        font-size: 1.1em;
+    }
+    
+    .close-btn {
+        padding: 12px 30px;
+        font-size: 1em;
+    }
+    
+    /* Container */
+    .container {
+        padding: 20px 10px;
+    }
+}
+
+/* Çok küçük ekranlar için */
+@media (max-width: 480px) {
+    .splash-title {
+        font-size: 2em;
+    }
+    
+    .title {
         font-size: 1.5em;
+    }
+    
+    .photo-carousel {
+        height: 200px;
+    }
+    
+    .candles {
+        transform: scale(1);
+        gap: 15px;
+    }
+    
+    .blow-text {
+        font-size: 1.3em;
+    }
+    
+    .wish-box h2 {
+        font-size: 1.1em;
+    }
+    
+    .message-content h1 {
+        font-size: 1.5em;
+    }
+    
+    .message-text {
+        font-size: 1em;
     }
 }
 
