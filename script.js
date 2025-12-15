@@ -263,6 +263,17 @@ async function startBlowDetection() {
             
             // Üfleme algılandı (ses seviyesi yüksek)
             if (average > 50) {
+                // Müziği üfleme ile başlat
+                if (!musicStarted) {
+                    bgMusic.play().then(() => {
+                        isMusicPlaying = true;
+                        musicToggle.textContent = '🔊 Müzik';
+                        musicStarted = true;
+                        console.log('Müzik üfleme ile başlatıldı');
+                    }).catch((error) => {
+                        console.log('Müzik henüz başlamadı:', error);
+                    });
+                }
                 extinguishAllCandles();
             }
             
