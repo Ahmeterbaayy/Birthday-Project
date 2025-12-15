@@ -237,7 +237,6 @@ body {
     flex-wrap: wrap;
     transform: scale(1.5);
     padding: 60px 0;
-    filter: brightness(1.5) contrast(1.2);
 }
 
 .blow-text {
@@ -269,14 +268,39 @@ body {
     align-items: center;
 }
 
+.candle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255, 235, 59, 0.4) 0%, rgba(255, 215, 0, 0.2) 30%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+}
+
 .flame {
     width: 25px;
     height: 40px;
     background: linear-gradient(to top, #ff9800, #ffd700, #ffeb3b, #fff);
     border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
     animation: flicker 0.5s ease-in-out infinite alternate;
-    box-shadow: 0 0 50px #ffeb3b, 0 0 80px #ffd700, 0 0 120px rgba(255, 235, 59, 0.8), 0 0 150px rgba(255, 235, 59, 0.4);
-    filter: brightness(1.8) saturate(1.3);
+    box-shadow: 0 0 60px rgba(255, 235, 59, 0.9), 
+                0 0 100px rgba(255, 215, 0, 0.7), 
+                0 0 140px rgba(255, 235, 59, 0.5),
+                0 0 180px rgba(255, 235, 59, 0.3);
+    filter: brightness(1.4) saturate(1.2);
+    position: relative;
+    z-index: 10;
 }
 
 @keyframes flicker {
@@ -318,7 +342,8 @@ body {
     border-radius: 5px 5px 15px 15px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
     position: relative;
-    filter: brightness(1.3) saturate(1.2);
+    filter: brightness(1.1) saturate(1.1);
+    z-index: 5;
 }
 
 .wax::before {
