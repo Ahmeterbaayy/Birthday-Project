@@ -5,6 +5,8 @@ const splashScreen = document.getElementById('splashScreen');
 const darkOverlay = document.getElementById('darkOverlay');
 const candlesSection = document.getElementById('candlesSection');
 const blowText = document.getElementById('blowText');
+const candlesBlownMessage = document.getElementById('candlesBlownMessage');
+const closeCandlesMessage = document.getElementById('closeCandlesMessage');
 let musicStarted = false;
 
 // Açılış ekranına tıklanınca ana sayfaya geç
@@ -304,7 +306,18 @@ function extinguishAllCandles() {
     extinguishedCount = flames.length;
     
     setTimeout(() => {
-        // Müzik hemen başlasın
+        // Üfle yazısını gizle
+        blowText.classList.remove('visible');
+        
+        // Karartmayı kaldır
+        darkOverlay.classList.remove('active');
+        
+        // Konfeti patlaması
+        for (let i = 0; i < 80; i++) {
+            setTimeout(() => confettiArray.push(new Confetti()), i * 15);
+        }
+        
+        // Müzik hemen başlasın (alert yok, direkt müzik)
         if (!musicStarted) {
             bgMusic.play().then(() => {
                 isMusicPlaying = true;
@@ -317,21 +330,10 @@ function extinguishAllCandles() {
             });
         }
         
-        // Üfle yazısını gizle
-        blowText.classList.remove('visible');
-        
-        // Karartmayı kaldır
-        darkOverlay.classList.remove('active');
-        
-        // Konfeti patlaması
-        for (let i = 0; i < 80; i++) {
-            setTimeout(() => confettiArray.push(new Confetti()), i * 15);
-        }
-        
-        // Alert'i biraz geciktir ki müzik başlasın
+        // Popup mesajı göster (alert yerine)
         setTimeout(() => {
-            alert('🎉 Tüm mumları üfledin! Dileğin kabul olsun! 🎂');
-        }, 500);
+            candlesBlownMessage.classList.add('show');
+        }, 300);
         
         // Mumları yeniden yak
         setTimeout(() => {
@@ -371,7 +373,18 @@ flames.forEach((flame, index) => {
             // Tüm mumlar söndüğünde
             if (extinguishedCount === flames.length) {
                 setTimeout(() => {
-                    // Müzik hemen başlasın
+                    // Üfle yazısını gizle
+                    blowText.classList.remove('visible');
+                    
+                    // Karartmayı kaldır
+                    darkOverlay.classList.remove('active');
+                    
+                    // Konfeti patlaması
+                    for (let i = 0; i < 80; i++) {
+                        setTimeout(() => confettiArray.push(new Confetti()), i * 15);
+                    }
+                    
+                    // Müzik hemen başlasın (tıklama kullanıcı etkileşimi)
                     if (!musicStarted) {
                         bgMusic.play().then(() => {
                             isMusicPlaying = true;
@@ -384,21 +397,10 @@ flames.forEach((flame, index) => {
                         });
                     }
                     
-                    // Üfle yazısını gizle
-                    blowText.classList.remove('visible');
-                    
-                    // Karartmayı kaldır
-                    darkOverlay.classList.remove('active');
-                    
-                    // Konfeti patlaması
-                    for (let i = 0; i < 80; i++) {
-                        setTimeout(() => confettiArray.push(new Confetti()), i * 15);
-                    }
-                    
-                    // Müziğin başlaması için zaman tanı
+                    // Popup mesajı göster (alert yerine)
                     setTimeout(() => {
-                        alert('🎉 Tüm mumları söndürdün! Dileğin kabul olsun! 🎂');
-                    }, 500);
+                        candlesBlownMessage.classList.add('show');
+                    }, 300);
                     
                     // Mumları yeniden yak
                     flames.forEach(f => {
@@ -424,6 +426,11 @@ flames.forEach((flame, index) => {
             flame.style.transform = 'scale(1)';
         }
     });
+});
+
+// Mumlar söndü mesajı kapatma
+closeCandlesMessage.addEventListener('click', () => {
+    candlesBlownMessage.classList.remove('show');
 });
 
 // Sayfa yüklendiğinde mikrofon iznini iste
