@@ -304,6 +304,19 @@ function extinguishAllCandles() {
     extinguishedCount = flames.length;
     
     setTimeout(() => {
+        // Müzik hemen başlasın
+        if (!musicStarted) {
+            bgMusic.play().then(() => {
+                isMusicPlaying = true;
+                musicToggle.textContent = '🔊 Müzik';
+                musicToggle.classList.remove('muted');
+                musicStarted = true;
+                console.log('Müzik mumlar söndükten sonra başlatıldı');
+            }).catch((error) => {
+                console.log('Müzik başlatılamadı:', error);
+            });
+        }
+        
         // Üfle yazısını gizle
         blowText.classList.remove('visible');
         
@@ -315,22 +328,10 @@ function extinguishAllCandles() {
             setTimeout(() => confettiArray.push(new Confetti()), i * 15);
         }
         
-        // Müzik alert'ten önce başlasın
-        if (!musicStarted) {
-            bgMusic.play().then(() => {
-                isMusicPlaying = true;
-                musicToggle.textContent = '🔊 Müzik';
-                musicStarted = true;
-                console.log('Müzik mumlar söndükten sonra başlatıldı');
-            }).catch((error) => {
-                console.log('Müzik başlatılamadı:', error);
-            });
-        }
-        
         // Alert'i biraz geciktir ki müzik başlasın
         setTimeout(() => {
             alert('🎉 Tüm mumları üfledin! Dileğin kabul olsun! 🎂');
-        }, 300);
+        }, 500);
         
         // Mumları yeniden yak
         setTimeout(() => {
@@ -370,6 +371,19 @@ flames.forEach((flame, index) => {
             // Tüm mumlar söndüğünde
             if (extinguishedCount === flames.length) {
                 setTimeout(() => {
+                    // Müzik hemen başlasın
+                    if (!musicStarted) {
+                        bgMusic.play().then(() => {
+                            isMusicPlaying = true;
+                            musicToggle.textContent = '🔊 Müzik';
+                            musicToggle.classList.remove('muted');
+                            musicStarted = true;
+                            console.log('Müzik tıklama ile başlatıldı');
+                        }).catch((error) => {
+                            console.log('Müzik başlatılamadı:', error);
+                        });
+                    }
+                    
                     // Üfle yazısını gizle
                     blowText.classList.remove('visible');
                     
@@ -381,7 +395,10 @@ flames.forEach((flame, index) => {
                         setTimeout(() => confettiArray.push(new Confetti()), i * 15);
                     }
                     
-                    alert('🎉 Tüm mumları söndürdün! Dileğin kabul olsun! 🎂');
+                    // Müziğin başlaması için zaman tanı
+                    setTimeout(() => {
+                        alert('🎉 Tüm mumları söndürdün! Dileğin kabul olsun! 🎂');
+                    }, 500);
                     
                     // Mumları yeniden yak
                     flames.forEach(f => {
