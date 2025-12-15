@@ -304,18 +304,6 @@ function extinguishAllCandles() {
             setTimeout(() => confettiArray.push(new Confetti()), i * 15);
         }
         
-        // Müziği başlat (eğer daha önce başlatılmadıysa) - alert öncesi başlat
-        if (!musicStarted) {
-            bgMusic.play().then(() => {
-                isMusicPlaying = true;
-                musicToggle.textContent = '🔊 Müzik';
-                musicStarted = true;
-                console.log('Müzik mumlar söndükten sonra başlatıldı');
-            }).catch((error) => {
-                console.error('Müzik çalma hatası:', error);
-            });
-        }
-        
         alert('🎉 Tüm mumları üfledin! Dileğin kabul olsun! 🎂');
         
         // Mumları yeniden yak
@@ -333,6 +321,18 @@ function extinguishAllCandles() {
 // Tek tek tıklayarak mum söndürme
 flames.forEach((flame, index) => {
     flame.addEventListener('click', () => {
+        // Müziği kullanıcı etkileşimi sırasında başlat (mobil için)
+        if (!musicStarted) {
+            bgMusic.play().then(() => {
+                isMusicPlaying = true;
+                musicToggle.textContent = '🔊 Müzik';
+                musicStarted = true;
+                console.log('Müzik tıklama ile başlatıldı');
+            }).catch((error) => {
+                console.log('Müzik henüz başlamadı:', error);
+            });
+        }
+        
         if (!flame.classList.contains('extinguished')) {
             flame.style.animation = 'flicker-out 0.3s ease forwards';
             setTimeout(() => {
@@ -353,18 +353,6 @@ flames.forEach((flame, index) => {
                     // Konfeti patlaması
                     for (let i = 0; i < 80; i++) {
                         setTimeout(() => confettiArray.push(new Confetti()), i * 15);
-                    }
-                    
-                    // Müziği başlat (eğer daha önce başlatılmadıysa) - alert öncesi başlat
-                    if (!musicStarted) {
-                        bgMusic.play().then(() => {
-                            isMusicPlaying = true;
-                            musicToggle.textContent = '🔊 Müzik';
-                            musicStarted = true;
-                            console.log('Müzik mumlar söndükten sonra başlatıldı');
-                        }).catch((error) => {
-                            console.error('Müzik çalma hatası:', error);
-                        });
                     }
                     
                     alert('🎉 Tüm mumları söndürdün! Dileğin kabul olsun! 🎂');
