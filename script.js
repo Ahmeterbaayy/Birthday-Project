@@ -304,18 +304,16 @@ function extinguishAllCandles() {
             setTimeout(() => confettiArray.push(new Confetti()), i * 15);
         }
         
-        // Müziği başlat (eğer daha önce başlatılmadıysa)
+        // Müziği başlat (eğer daha önce başlatılmadıysa) - alert öncesi başlat
         if (!musicStarted) {
-            setTimeout(() => {
-                bgMusic.play().then(() => {
-                    isMusicPlaying = true;
-                    musicToggle.textContent = '🔊 Müzik';
-                    musicStarted = true;
-                    console.log('Müzik mumlar söndükten sonra başlatıldı');
-                }).catch((error) => {
-                    console.error('Müzik çalma hatası:', error);
-                });
-            }, 1000);
+            bgMusic.play().then(() => {
+                isMusicPlaying = true;
+                musicToggle.textContent = '🔊 Müzik';
+                musicStarted = true;
+                console.log('Müzik mumlar söndükten sonra başlatıldı');
+            }).catch((error) => {
+                console.error('Müzik çalma hatası:', error);
+            });
         }
         
         alert('🎉 Tüm mumları üfledin! Dileğin kabul olsun! 🎂');
@@ -357,18 +355,16 @@ flames.forEach((flame, index) => {
                         setTimeout(() => confettiArray.push(new Confetti()), i * 15);
                     }
                     
-                    // Müziği başlat (eğer daha önce başlatılmadıysa)
+                    // Müziği başlat (eğer daha önce başlatılmadıysa) - alert öncesi başlat
                     if (!musicStarted) {
-                        setTimeout(() => {
-                            bgMusic.play().then(() => {
-                                isMusicPlaying = true;
-                                musicToggle.textContent = '🔊 Müzik';
-                                musicStarted = true;
-                                console.log('Müzik mumlar söndükten sonra başlatıldı');
-                            }).catch((error) => {
-                                console.error('Müzik çalma hatası:', error);
-                            });
-                        }, 1000);
+                        bgMusic.play().then(() => {
+                            isMusicPlaying = true;
+                            musicToggle.textContent = '🔊 Müzik';
+                            musicStarted = true;
+                            console.log('Müzik mumlar söndükten sonra başlatıldı');
+                        }).catch((error) => {
+                            console.error('Müzik çalma hatası:', error);
+                        });
                     }
                     
                     alert('🎉 Tüm mumları söndürdün! Dileğin kabul olsun! 🎂');
