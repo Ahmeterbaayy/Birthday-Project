@@ -401,7 +401,7 @@ flames.forEach((flame, index) => {
 
 // Sayfa yüklendiğinde mikrofon iznini iste
 setTimeout(() => {
-    if (confirm('🎤 Mumları üfleyerek söndürmek ister misin? (Mikrofon izni gerekir)\n\nHayır derseniz tıklayarak veya Space tuşuyla söndürebilirsiniz.')) {
+    if (confirm('🎤 Mumları üfleyerek söndürmek ister misin? (Mikrofon izni gerekir)\n\nHayır derseniz tıklayarak söndürebilirsiniz.')) {
         startBlowDetection();
     }
 }, 3000);
