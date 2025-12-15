@@ -360,16 +360,6 @@ function extinguishAllCandles() {
         setTimeout(() => {
             candlesBlownMessage.classList.add('show');
         }, 300);
-        
-        // Mumları yeniden yak
-        setTimeout(() => {
-            flames.forEach(f => {
-                f.style.animation = '';
-                f.style.opacity = '1';
-                f.classList.remove('extinguished');
-            });
-            extinguishedCount = 0;
-        }, 2000);
     }, 500);
 }
 
@@ -432,14 +422,6 @@ flames.forEach((flame, index) => {
                     setTimeout(() => {
                         candlesBlownMessage.classList.add('show');
                     }, 300);
-                    
-                    // Mumları yeniden yak
-                    flames.forEach(f => {
-                        f.style.animation = '';
-                        f.style.opacity = '1';
-                        f.classList.remove('extinguished');
-                    });
-                    extinguishedCount = 0;
                 }, 500);
             }
         }
