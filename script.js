@@ -315,7 +315,22 @@ function extinguishAllCandles() {
             setTimeout(() => confettiArray.push(new Confetti()), i * 15);
         }
         
-        alert('🎉 Tüm mumları üfledin! Dileğin kabul olsun! 🎂');
+        // Müzik alert'ten önce başlasın
+        if (!musicStarted) {
+            bgMusic.play().then(() => {
+                isMusicPlaying = true;
+                musicToggle.textContent = '🔊 Müzik';
+                musicStarted = true;
+                console.log('Müzik mumlar söndükten sonra başlatıldı');
+            }).catch((error) => {
+                console.log('Müzik başlatılamadı:', error);
+            });
+        }
+        
+        // Alert'i biraz geciktir ki müzik başlasın
+        setTimeout(() => {
+            alert('🎉 Tüm mumları üfledin! Dileğin kabul olsun! 🎂');
+        }, 300);
         
         // Mumları yeniden yak
         setTimeout(() => {
