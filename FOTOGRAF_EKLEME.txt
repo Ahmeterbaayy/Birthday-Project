@@ -1,0 +1,19 @@
+📸 FOTOĞRAF EKLEME TALİMATI
+
+Gönderdiğiniz 4 fotoğrafı şu şekilde kaydedin:
+
+1. İlk fotoğraf (teknede) → "photo1.jpg" olarak kaydedin
+2. İkinci fotoğraf (restoranda) → "photo2.jpg" olarak kaydedin  
+3. Üçüncü fotoğraf (gece/kırmızı ışık) → "photo3.jpg" olarak kaydedin
+4. Dördüncü fotoğraf (selfie/güneş gözlüğü) → "photo4.jpg" olarak kaydedin
+
+Bu 4 fotoğrafı:
+C:\birthday-celebration\photos\
+
+klasörüne koyun.
+
+VEYA fotoğrafları başka bir yere koyarsanız, index.html dosyasındaki
+21-24. satırlarda dosya yollarını değiştirin.
+
+ALTERNATIF: Fotoğrafları online bir yere yükleyip (imgur, imgbb vb.) 
+direkt URL'lerini de kullanabilirsiniz.
