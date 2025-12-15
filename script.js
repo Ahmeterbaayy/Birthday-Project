@@ -14,6 +14,17 @@ splashScreen.addEventListener('click', () => {
     // Açılış ekranını kapat
     splashScreen.classList.add('hidden');
     
+    // Müziği sessiz olarak başlat (tarayıcı politikası için)
+    if (!musicStarted) {
+        bgMusic.volume = 0;
+        bgMusic.play().then(() => {
+            console.log('Müzik sessiz başlatıldı, mumlar söndüğünde açılacak');
+            musicStarted = true;
+        }).catch((error) => {
+            console.log('Müzik başlatılamadı:', error);
+        });
+    }
+    
     // 1 saniye sonra mumlar bölümüne kaydır ve karart
     setTimeout(() => {
         // Mumlar bölümüne kaydır
@@ -53,20 +64,29 @@ bgMusic.addEventListener('error', (e) => {
 
 musicToggle.addEventListener('click', () => {
     if (isMusicPlaying) {
-        bgMusic.pause();
+        bgMusic.volume = 0;
         musicToggle.textContent = '🔇 Müzik';
         musicToggle.classList.add('muted');
         isMusicPlaying = false;
     } else {
-        bgMusic.play().then(() => {
+        if (!musicStarted) {
+            bgMusic.volume = 1;
+            bgMusic.play().then(() => {
+                musicToggle.textContent = '🔊 Müzik';
+                musicToggle.classList.remove('muted');
+                isMusicPlaying = true;
+                musicStarted = true;
+                console.log('Müzik çalıyor');
+            }).catch((error) => {
+                console.error('Müzik çalma hatası:', error);
+                alert('Müzik çalınamadı. Lütfen tekrar deneyin.');
+            });
+        } else {
+            bgMusic.volume = 1;
             musicToggle.textContent = '🔊 Müzik';
             musicToggle.classList.remove('muted');
             isMusicPlaying = true;
-            console.log('Müzik çalıyor');
-        }).catch((error) => {
-            console.error('Müzik çalma hatası:', error);
-            alert('Müzik çalınamadı. Lütfen tekrar deneyin.');
-        });
+        }
     }
 });
 
@@ -265,17 +285,6 @@ async function startBlowDetection() {
             
             // Üfleme algılandı (ses seviyesi yüksek)
             if (average > 50) {
-                // Müziği üfleme ile başlat
-                if (!musicStarted) {
-                    bgMusic.play().then(() => {
-                        isMusicPlaying = true;
-                        musicToggle.textContent = '🔊 Müzik';
-                        musicStarted = true;
-                        console.log('Müzik üfleme ile başlatıldı');
-                    }).catch((error) => {
-                        console.log('Müzik henüz başlamadı:', error);
-                    });
-                }
                 extinguishAllCandles();
             }
             
@@ -317,8 +326,25 @@ function extinguishAllCandles() {
             setTimeout(() => confettiArray.push(new Confetti()), i * 15);
         }
         
-        // Müzik hemen başlasın (alert yok, direkt müzik)
-        if (!musicStarted) {
+        // Müzik sesini aç (zaten çalıyor ama sessiz)
+        if (musicStarted) {
+            // Sesi yavaşça artır
+            let vol = 0;
+            const fadeIn = setInterval(() => {
+                if (vol < 1) {
+                    vol += 0.1;
+                    bgMusic.volume = Math.min(vol, 1);
+                } else {
+                    clearInterval(fadeIn);
+                }
+            }, 100);
+            isMusicPlaying = true;
+            musicToggle.textContent = '🔊 Müzik';
+            musicToggle.classList.remove('muted');
+            console.log('Müzik sesi açıldı');
+        } else {
+            // Eğer hiç başlamadıysa şimdi başlat
+            bgMusic.volume = 1;
             bgMusic.play().then(() => {
                 isMusicPlaying = true;
                 musicToggle.textContent = '🔊 Müzik';
@@ -350,18 +376,6 @@ function extinguishAllCandles() {
 // Tek tek tıklayarak mum söndürme
 flames.forEach((flame, index) => {
     flame.addEventListener('click', () => {
-        // Müziği kullanıcı etkileşimi sırasında başlat (mobil için)
-        if (!musicStarted) {
-            bgMusic.play().then(() => {
-                isMusicPlaying = true;
-                musicToggle.textContent = '🔊 Müzik';
-                musicStarted = true;
-                console.log('Müzik tıklama ile başlatıldı');
-            }).catch((error) => {
-                console.log('Müzik henüz başlamadı:', error);
-            });
-        }
-        
         if (!flame.classList.contains('extinguished')) {
             flame.style.animation = 'flicker-out 0.3s ease forwards';
             setTimeout(() => {
@@ -384,8 +398,25 @@ flames.forEach((flame, index) => {
                         setTimeout(() => confettiArray.push(new Confetti()), i * 15);
                     }
                     
-                    // Müzik hemen başlasın (tıklama kullanıcı etkileşimi)
-                    if (!musicStarted) {
+                    // Müzik sesini aç (zaten çalıyor ama sessiz)
+                    if (musicStarted) {
+                        // Sesi yavaşça artır
+                        let vol = 0;
+                        const fadeIn = setInterval(() => {
+                            if (vol < 1) {
+                                vol += 0.1;
+                                bgMusic.volume = Math.min(vol, 1);
+                            } else {
+                                clearInterval(fadeIn);
+                            }
+                        }, 100);
+                        isMusicPlaying = true;
+                        musicToggle.textContent = '🔊 Müzik';
+                        musicToggle.classList.remove('muted');
+                        console.log('Müzik sesi açıldı');
+                    } else {
+                        // Eğer hiç başlamadıysa şimdi başlat
+                        bgMusic.volume = 1;
                         bgMusic.play().then(() => {
                             isMusicPlaying = true;
                             musicToggle.textContent = '🔊 Müzik';
