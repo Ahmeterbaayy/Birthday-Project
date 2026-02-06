@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎉 Doğum Günün Kutlu Olsun! 🎂</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Açılış ekranı -->
+    <div id="splashScreen" class="splash-screen">
+        <h1 class="splash-title">🎂 Bir Dilek Tut 🎂</h1>
+        <div class="splash-subtitle">Hazırsan tıkla...</div>
+    </div>
+
+    <!-- Karartma overlay -->
+    <div id="darkOverlay" class="dark-overlay"></div>
+
+    <!-- Arka plan müziği -->
+    <audio id="bgMusic" loop>
+        <source src="music/Mavi Gri - Dünyanın En Güzel Kızı (Lyrics Video).m4a" type="audio/mp4">
+    </audio>
+
+    <!-- Müzik kontrol butonu -->
+    <button id="musicToggle" class="music-btn">
+        🔊 Müzik
+    </button>
+
+    <!-- Konfeti katmanı -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <!-- Ana konteyner -->
+    <div class="container">
+        <!-- Başlık -->
+        <h1 class="title">💝 Doğum Günün Kutlu Olsun 💝</h1>
+
+        <!-- Fotoğraf carousel -->
+        <div class="photo-carousel">
+            <div class="carousel-container">
+                <img src="photos/photo1.jpg" alt="Tekne" class="carousel-image active photo-1">
+                <img src="photos/photo2.jpg" alt="Restoran" class="carousel-image photo-2">
+                <img src="photos/photo3.jpg" alt="Gece" class="carousel-image photo-3">
+                <img src="photos/photo4.jpg" alt="Selfie" class="carousel-image photo-4">
+            </div>
+            <button class="carousel-btn prev">❮</button>
+            <button class="carousel-btn next">❯</button>
+        </div>
+
+        <!-- Doğum günü mumları -->
+        <div class="candles" id="candlesSection">
+            <div class="candle">
+                <div class="flame"></div>
+                <div class="wick"></div>
+                <div class="wax"></div>
+            </div>
+            <div class="candle">
+                <div class="flame"></div>
+                <div class="wick"></div>
+                <div class="wax"></div>
+            </div>
+            <div class="candle">
+                <div class="flame"></div>
+                <div class="wick"></div>
+                <div class="wax"></div>
+            </div>
+            <div class="candle">
+                <div class="flame"></div>
+                <div class="wick"></div>
+                <div class="wax"></div>
+            </div>
+            <div class="candle">
+                <div class="flame"></div>
+                <div class="wick"></div>
+                <div class="wax"></div>
+            </div>
+            <div class="blow-text" id="blowText">💨 Üfle 💨</div>
+        </div>
+
+        <!-- Dilek kutusu -->
+        <div class="wish-box">
+            <h2>🎂 Bir Doğum Günü Mesajı Yaz! 🎈</h2>
+            <textarea id="wishText" placeholder="Buraya güzel mesajını yaz..."></textarea>
+            <button id="submitWish" class="wish-btn">Mesajı Gönder ✨</button>
+            <div id="wishMessage" class="wish-message"></div>
+        </div>
+    </div>
+
+    <!-- Uçan balonlar -->
+    <div id="balloons"></div>
+
+    <!-- Dilek gönderilince gösterilecek özel mesaj -->
+    <div id="specialMessage" class="special-message">
+        <div class="message-content">
+            <h1 class="sparkle">✨ Çok Teşekkür Ederim! ✨</h1>
+            <p class="message-text">Böyle harika bir sürpriz için teşekkürler! 🎉</p>
+            <p class="message-text">Sen de hayatımın en güzel hediyesisin! 💝</p>
+            <button id="closeMessage" class="close-btn">Kapat ❤️</button>
+        </div>
+    </div>
+
+    <!-- Mumlar söndüğünde gösterilecek kutlama mesajı -->
+    <div id="candlesBlownMessage" class="special-message">
+        <div class="message-content">
+            <h1 class="sparkle">🎉 Tüm Mumları Söndürdün! 🎂</h1>
+            <p class="message-text">Dileğin kabul olsun! ✨</p>
+            <p class="message-text">İyi ki doğdun! 🎈</p>
+            <button id="closeCandlesMessage" class="close-btn">Devam Et 💝</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
